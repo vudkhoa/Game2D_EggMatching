@@ -1,4 +1,3 @@
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class EggView : MonoBehaviour
@@ -20,6 +19,7 @@ public class EggView : MonoBehaviour
     public void MoveEgg(int row, float xPos, float yPos, float distance)
     {
         if (rect == null) return;
+
         if (row != 1)
         {
             rect.anchoredPosition = new Vector2(xPos, yPos - distance);
@@ -27,7 +27,6 @@ public class EggView : MonoBehaviour
         else if (yPos - distance != 0)
         {
             rect.anchoredPosition = new Vector2(xPos, -545);
-            //Destroy(gameObject);
         }
     }
 }
