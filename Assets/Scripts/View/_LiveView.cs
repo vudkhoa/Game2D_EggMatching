@@ -12,6 +12,7 @@ public class _LiveView : MonoBehaviour
 
     public void SetText(int live)
     {
+        if (liveText == null) return;
         liveText.text = "Live: " + live.ToString();
     }
 }

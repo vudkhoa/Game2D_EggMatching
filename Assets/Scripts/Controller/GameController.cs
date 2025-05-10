@@ -36,12 +36,11 @@ public class GameController : MonoBehaviour
 
     private int matrixCol = 5;
     private int matrixRow = 11;
-    private _UIManager uiManager;
 
     private void Start()
     {
-        uiManager = _UIManager.Instance;
-        uiManager.ShowHUD();
+        _UIManager.instance.StartGame();
+        this.panelParent = _UIManager.instance.GetTrasformMainMenu();
         InitMatrix();
         InitBasket();
         InitEggs();
@@ -114,8 +113,10 @@ public class GameController : MonoBehaviour
                             live.DecreaseLive();
                             if (live.Getlive() == 0)
                             {
+                                _UIManager.instance.GameOver();
                                 //Debug.Log("GameOver");
-                                uiManager.ShowGameOver("GameOver", score.GetScore(), 1000);                            }
+                                //uiManager.ShowGameOver("GameOver", score.GetScore(), 1000);  
+                            }
                         }
                         else
                         {
@@ -162,6 +163,10 @@ public class GameController : MonoBehaviour
                 basket.SetCol(basket.col + 1);
                 MoveBasket(basket.col);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _UIManager.instance.PauseGame(this.score.GetScore());
         }
     }
 
